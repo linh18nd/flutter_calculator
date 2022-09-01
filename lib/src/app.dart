@@ -7,9 +7,11 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
@@ -22,20 +24,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Calculate calculate = Calculate();
-  int count = 0;
+  final constroller = ScrollController();
 
   void _getHistory(String str) {
     setState(() {
-      try {
-        calculate.delData();
-        calculate.inputData(str);
-      } catch (e) {
-        setState(() {
-          MessageDialog();
-          // calculate.delData();
-          // calculate.addData("nhập sai rồi!!!");
-        });
-      }
+      calculate.delData();
+      calculate.inputData(str);
+      constroller.jumpTo(constroller.position.maxScrollExtent);
     });
   }
 
@@ -43,13 +38,12 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       try {
         calculate.inputData(str);
+        constroller.jumpTo(constroller.position.maxScrollExtent);
       } catch (e) {
         setState(() {
           showDialog<String>(
               context: context,
-              builder: (BuildContext context) => MessageDialog());
-          // calculate.delData();
-          // calculate.addData("nhập sai rồi!!!");
+              builder: (BuildContext context) => const MessageDialog());
         });
       }
     });
@@ -59,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Home(
+        controller: constroller,
         onGetHistory: _getHistory,
         onTap: _updateData,
         calculate: calculate,

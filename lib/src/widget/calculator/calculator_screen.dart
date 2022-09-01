@@ -4,10 +4,14 @@ import 'package:flutter_calculator/src/widget/calculator/calculation_history.dar
 
 class CalculatorScreen extends StatelessWidget {
   const CalculatorScreen(
-      {Key? key, required this.calculate, required this.onTap})
+      {Key? key,
+      required this.controller,
+      required this.calculate,
+      required this.onTap})
       : super(key: key);
   final Calculate calculate;
   final Function onTap;
+  final ScrollController controller;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,6 +20,7 @@ class CalculatorScreen extends StatelessWidget {
         Expanded(
             flex: 1,
             child: CalculationHistory(
+              controller: controller,
               onTap: onTap,
               data: calculate.getHistory,
             )),

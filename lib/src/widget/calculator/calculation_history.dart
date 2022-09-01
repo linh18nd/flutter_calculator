@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
 class CalculationHistory extends StatelessWidget {
-  const CalculationHistory({Key? key, required this.data, required this.onTap})
+  const CalculationHistory(
+      {Key? key,
+      required this.controller,
+      required this.data,
+      required this.onTap})
       : super(key: key);
   final List<dynamic> data;
   final Function onTap;
+  final ScrollController controller;
   @override
   Widget build(BuildContext context) {
-    final controller = ScrollController();
-    //controller.jumpTo(0);
     return ListView.builder(
       controller: controller,
       physics: const ScrollPhysics(parent: ClampingScrollPhysics()),
-      reverse: true,
+      reverse: false,
       itemCount: data.length,
       itemBuilder: (context, index) {
         return Container(

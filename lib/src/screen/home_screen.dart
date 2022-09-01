@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class Home extends StatelessWidget {
   const Home({
     Key? key,
+    required this.controller,
     required this.onGetHistory,
     required this.calculate,
     required this.onTap,
@@ -12,6 +13,7 @@ class Home extends StatelessWidget {
   final Calculate calculate;
   final Function onTap;
   final Function onGetHistory;
+  final ScrollController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class Home extends StatelessWidget {
           Expanded(
             flex: 3,
             child: CalculatorScreen(
+              controller: controller,
               onTap: onGetHistory,
               calculate: calculate,
             ),
