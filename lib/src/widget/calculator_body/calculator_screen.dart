@@ -29,6 +29,7 @@ class CalculatorScreen extends StatelessWidget {
           child: Container(
             alignment: Alignment.bottomRight,
             child: Text(
+              maxLines: 1,
               calculate.getData,
               style: Theme.of(context).textTheme.headline3,
             ),
