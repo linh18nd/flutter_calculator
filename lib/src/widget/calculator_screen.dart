@@ -12,6 +12,7 @@ class CalculatorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const Spacer(),
         Expanded(
             flex: 1,
             child: CalculationHistory(
@@ -19,7 +20,7 @@ class CalculatorScreen extends StatelessWidget {
               data: calculate.getHistory,
             )),
         Expanded(
-          flex: 1,
+          flex: 2,
           child: Container(
             alignment: Alignment.bottomRight,
             child: Text(
@@ -29,7 +30,7 @@ class CalculatorScreen extends StatelessWidget {
           ),
         ),
         Expanded(
-          flex: 1,
+          flex: 2,
           child: Container(
             alignment: Alignment.bottomRight,
             child: Text(

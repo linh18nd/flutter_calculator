@@ -7,6 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(),
     );
   }
@@ -22,7 +23,20 @@ class _MyHomePageState extends State<MyHomePage> {
   Calculate calculate = Calculate();
   int count = 0;
 
-  void chooseHistory() {}
+  void _getHistory(String str) {
+    setState(() {
+      try {
+        calculate.delData();
+        calculate.inputData(str);
+      } catch (e) {
+        setState(() {
+          calculate.delData();
+          calculate.addData("nhập sai rồi!!!");
+        });
+      }
+    });
+  }
+
   void _updateData(String str) {
     setState(() {
       try {
@@ -40,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Home(
+        onGetHistory: _getHistory,
         onTap: _updateData,
         calculate: calculate,
       ),

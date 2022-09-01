@@ -12,7 +12,7 @@ class CalculationHistory extends StatelessWidget {
       itemCount: data.length,
       itemBuilder: (context, index) {
         return Container(
-          //constraints: const BoxConstraints(maxHeight: 80),
+          //padding: EdgeInsets.only(top: 20, bottom: 20),
           alignment: Alignment.bottomRight,
           child: TextButton(
             onPressed: () => onTap(data[index]),

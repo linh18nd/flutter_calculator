@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class Home extends StatelessWidget {
   const Home({
     Key? key,
+    required this.onGetHistory,
     required this.calculate,
     required this.onTap,
   }) : super(key: key);
   final Calculate calculate;
   final Function onTap;
+  final Function onGetHistory;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class Home extends StatelessWidget {
           Expanded(
             flex: 3,
             child: CalculatorScreen(
-              onTap: onTap,
+              onTap: onGetHistory,
               calculate: calculate,
             ),
           ),
