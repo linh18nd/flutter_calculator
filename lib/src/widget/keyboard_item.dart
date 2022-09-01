@@ -1,10 +1,10 @@
-import 'package:flutter_calculator/src/controller/calculator_controller.dart';
 import 'package:flutter_calculator/src/widget/calculator.dart';
 import 'package:flutter/material.dart';
 
 class KeyboardItem extends StatelessWidget {
   const KeyboardItem(
       {Key? key,
+      required this.onPressed,
       required this.data,
       required this.backgroundColor,
       this.setBackgroundColor = false})
@@ -12,7 +12,7 @@ class KeyboardItem extends StatelessWidget {
   final List<String> data;
   final Color backgroundColor;
   final bool setBackgroundColor;
-  //final GestureTapCallback? onTap;
+  final Function onPressed;
   @override
   Widget build(BuildContext context) {
     if (data.length == 4) {
@@ -20,40 +20,36 @@ class KeyboardItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CalculatorButton(
+            character: data[0],
             backgroundColor: setBackgroundColor ? backgroundColor : null,
-            onTap: () {
-              addData(data[0], context);
-            },
+            onPressed: onPressed,
             child: Text(
               data[0],
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
           CalculatorButton(
+            character: data[1],
             backgroundColor: setBackgroundColor ? backgroundColor : null,
-            onTap: () {
-              addData(data[1], context);
-            },
+            onPressed: onPressed,
             child: Text(
               data[1],
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
           CalculatorButton(
+            character: data[2],
             backgroundColor: setBackgroundColor ? backgroundColor : null,
-            onTap: () {
-              addData(data[2], context);
-            },
+            onPressed: onPressed,
             child: Text(
               data[2],
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
           CalculatorButton(
+            character: data[3],
             backgroundColor: backgroundColor,
-            onTap: () {
-              addData(data[3], context);
-            },
+            onPressed: onPressed,
             child: Text(
               data[3],
               style: Theme.of(context).textTheme.headline5,
@@ -68,9 +64,8 @@ class KeyboardItem extends StatelessWidget {
           Expanded(
             flex: 1,
             child: CalculatorButton(
-              onTap: () {
-                addData(data[0], context);
-              },
+              onPressed: onPressed,
+              character: data[0],
               child: Text(
                 data[0],
                 style: Theme.of(context).textTheme.headline5,
@@ -80,9 +75,8 @@ class KeyboardItem extends StatelessWidget {
           Expanded(
             flex: 1,
             child: CalculatorButton(
-              onTap: () {
-                addData(data[1], context);
-              },
+              character: data[1],
+              onPressed: onPressed,
               child: Text(
                 data[1],
                 style: Theme.of(context).textTheme.headline5,
@@ -94,14 +88,13 @@ class KeyboardItem extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.only(left: 25),
               child: CalculatorButton(
+                onPressed: onPressed,
+                character: data[2],
                 backgroundColor: Color.fromARGB(
                     backgroundColor.alpha + 40,
                     backgroundColor.red - 115,
                     backgroundColor.green - 112,
                     backgroundColor.blue - 112),
-                onTap: () {
-                  addData(data[2], context);
-                },
                 child: Text(
                   data[2],
                   style: Theme.of(context).textTheme.headline5,
@@ -114,10 +107,5 @@ class KeyboardItem extends StatelessWidget {
     } else {
       throw "type 'data' accepts only arrays of length 3 or 4";
     }
-  }
-
-  void addData(String str, context) {
-    CalculateController.of(context).data.inputData(str);
-    CalculateController.of(context).onTap;
   }
 }

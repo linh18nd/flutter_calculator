@@ -1,21 +1,30 @@
-import 'package:flutter_calculator/src/controller/calculator_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_calculator/src/resources/data/calculate.dart';
+import 'package:flutter_calculator/src/widget/calculation_history.dart';
 
 class CalculatorScreen extends StatelessWidget {
-  const CalculatorScreen({Key? key}) : super(key: key);
-//final GestureTapCallback? onTap;
+  const CalculatorScreen(
+      {Key? key, required this.calculate, required this.onTap})
+      : super(key: key);
+  final Calculate calculate;
+  final Function onTap;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Spacer(),
+        Expanded(
+            flex: 1,
+            child: CalculationHistory(
+              onTap: onTap,
+              data: calculate.getHistory,
+            )),
         Expanded(
           flex: 1,
           child: Container(
             alignment: Alignment.bottomRight,
             child: Text(
-              CalculateController.of(context).data.getData,
-              style: Theme.of(context).textTheme.headline4,
+              calculate.getData,
+              style: Theme.of(context).textTheme.headline3,
             ),
           ),
         ),
@@ -24,9 +33,9 @@ class CalculatorScreen extends StatelessWidget {
           child: Container(
             alignment: Alignment.bottomRight,
             child: Text(
-              CalculateController.of(context).data.getResult,
+              calculate.getResult,
               style: const TextStyle(
-                  fontSize: 50, color: Color.fromARGB(255, 35, 201, 41)),
+                  fontSize: 60, color: Color.fromARGB(255, 35, 201, 41)),
             ),
           ),
         ),

@@ -5,13 +5,13 @@ import 'package:flutter/cupertino.dart';
 class CalculateController extends InheritedWidget {
   const CalculateController(
       {Key? key,
-      required this.onTap,
       required Widget child,
-      required this.data})
+      required this.data,
+      required this.onTap})
       : super(key: key, child: child);
-  final GestureTapCallback? onTap;
-  final Calculate data;
 
+  final Calculate data;
+  final GestureTapCallback onTap;
   @override
   bool updateShouldNotify(CalculateController oldWidget) {
     return true;

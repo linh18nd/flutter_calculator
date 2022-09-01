@@ -1,4 +1,3 @@
-import 'package:flutter_calculator/src/controller/calculator_controller.dart';
 import 'package:flutter_calculator/src/resources/data/calculate.dart';
 import 'package:flutter_calculator/src/screen/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,25 +20,29 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Calculate calculate = Calculate();
+  int count = 0;
+
+  void chooseHistory() {}
+  void _updateData(String str) {
+    setState(() {
+      try {
+        calculate.inputData(str);
+      } catch (e) {
+        setState(() {
+          calculate.delData();
+          calculate.addData("nhập sai rồi!!!");
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(onPressed: updateData),
-        body: CalculateController(
-          // ignore: sort_child_properties_last
-          child: const Home(),
-          onTap: () {
-            updateData();
-          },
-          data: calculate,
-        )
-
-        // This trailing comma makes auto-formatting nicer for build methods.
-        );
-  }
-
-  void updateData() {
-    setState(() {});
+      body: Home(
+        onTap: _updateData,
+        calculate: calculate,
+      ),
+    );
   }
 }
