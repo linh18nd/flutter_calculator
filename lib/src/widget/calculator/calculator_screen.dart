@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_calculator/src/resources/data/calculate.dart';
-import 'package:flutter_calculator/src/widget/calculation_history.dart';
+import 'package:flutter_calculator/src/widget/calculator/calculation_history.dart';
 
 class CalculatorScreen extends StatelessWidget {
   const CalculatorScreen(

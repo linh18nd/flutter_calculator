@@ -1,4 +1,4 @@
-import 'package:flutter_calculator/src/widget/calculator.dart';
+import 'package:flutter_calculator/src/widget/calculator/calculator.dart';
 import 'package:flutter/material.dart';
 
 class KeyboardItem extends StatelessWidget {

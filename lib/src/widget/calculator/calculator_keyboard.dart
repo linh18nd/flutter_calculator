@@ -1,5 +1,5 @@
-import 'package:flutter_calculator/src/resources/data/calculate.dart';
-import 'package:flutter_calculator/src/widget/keyboard_item.dart';
+import 'package:flutter_calculator/src/widget/calculator/calculator.dart';
+
 import 'package:flutter/material.dart';
 
 class CalculatorKeyboard extends StatelessWidget {

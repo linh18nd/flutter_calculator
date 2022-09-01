@@ -1,6 +1,7 @@
 import 'package:flutter_calculator/src/resources/data/calculate.dart';
 import 'package:flutter_calculator/src/screen/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_calculator/src/widget/dialog/message_dialog.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -30,8 +31,9 @@ class _MyHomePageState extends State<MyHomePage> {
         calculate.inputData(str);
       } catch (e) {
         setState(() {
-          calculate.delData();
-          calculate.addData("nhập sai rồi!!!");
+          MessageDialog();
+          // calculate.delData();
+          // calculate.addData("nhập sai rồi!!!");
         });
       }
     });
@@ -43,8 +45,11 @@ class _MyHomePageState extends State<MyHomePage> {
         calculate.inputData(str);
       } catch (e) {
         setState(() {
-          calculate.delData();
-          calculate.addData("nhập sai rồi!!!");
+          showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => MessageDialog());
+          // calculate.delData();
+          // calculate.addData("nhập sai rồi!!!");
         });
       }
     });

@@ -34,8 +34,17 @@ class Calculate {
     ContextModel ctx = ContextModel();
     ctx.bindVariable(ans, p.parse(_ans));
     double eval = exp.evaluate(EvaluationType.REAL, ctx);
-    _result = eval.toString();
+    _result = ((eval * 10000000).roundToDouble() / 10000000).toString();
     _ans = _result;
+  }
+
+  void historyLimit(String str) {
+    if (_history.length > 5) {
+      _history.removeAt(0);
+      _history.add(str);
+    } else {
+      _history.add(str);
+    }
   }
 
   void inputData(String str) {
@@ -43,10 +52,9 @@ class Calculate {
       delData();
     } else if (str == "=") {
       calculate();
-      _history.add(_data);
+      historyLimit(_data);
     } else {
       addData(str);
     }
-    print(_data);
   }
 }
