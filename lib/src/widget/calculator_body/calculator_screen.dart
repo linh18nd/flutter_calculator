@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_calculator/src/resources/data/calculate.dart';
-import 'package:flutter_calculator/src/widget/calculator/calculation_history.dart';
+import 'package:flutter_calculator/src/widget/calculator_body/calculator.dart';
 
 class CalculatorScreen extends StatelessWidget {
   const CalculatorScreen(
@@ -29,6 +29,7 @@ class CalculatorScreen extends StatelessWidget {
           child: Container(
             alignment: Alignment.bottomRight,
             child: Text(
+              softWrap: false,
               maxLines: 1,
               calculate.getData,
               style: Theme.of(context).textTheme.headline3,
@@ -40,6 +41,7 @@ class CalculatorScreen extends StatelessWidget {
           child: Container(
             alignment: Alignment.bottomRight,
             child: Text(
+              softWrap: false,
               calculate.getResult,
               style: const TextStyle(
                   fontSize: 60, color: Color.fromARGB(255, 35, 201, 41)),
